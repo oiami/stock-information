@@ -1,0 +1,29 @@
+{
+  "name": "stock-information",
+  "version": "1.0.0",
+  "description": "A module to query stock information.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watchAll --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oiami/stock-information.git"
+  },
+  "keywords": [
+    "stock"
+  ],
+  "author": "Pattawan Gerlings",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oiami/stock-information/issues"
+  },
+  "homepage": "https://github.com/oiami/stock-information#readme",
+  "dependencies": {
+    "axios": "^0.18.0"
+  },
+  "devDependencies": {
+    "jest": "^24.1.0",
+    "nodemon": "^1.18.10"
+  }
+}
