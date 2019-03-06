@@ -105,9 +105,9 @@ describe('transform data', () => {
       ];
       
       const result = transformer.calReturn(input);
-      expect(result).toHaveProperty('fromDate', 'toDate', 'fromValue', 'toValue', 'rate', 'percent');
+      expect(result).toHaveProperty('startDate', 'endDate', 'fromValue', 'toValue', 'rate', 'percent');
       expect(result.rate).toEqual(2.740000000000009);
-      expect(result.percent).toEqual('1.6');
+      expect(result.percent).toEqual('+1.6');
     })
   });
   
