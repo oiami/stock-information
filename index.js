@@ -45,7 +45,22 @@ const main = async () => {
     const drawdown = transformer.calDrawdown(summary);
   
     const ret = transformer.calReturn(summary);
-  
+
+    console.log('Output:');
+    summary.forEach(item => {
+      console.log(`${item.date}: Closed at ${item.close} (${item.min} ~ ${item.max})`);
+    });
+
+    console.log("\nFirst 3 Drawdowns:");
+    drawdown.slice(0,3).forEach(item => {
+      console.log(`-${item.drawdown}% (${item.max} on ${item.date} -> ${item.min} on ${item.date})`);
+    });
+
+    const [max] = drawdown;
+    console.log(`\nMaximum drawdown: -${max.drawdown}% (${max.max} on ${max.date} -> ${max.min} on ${max.date})`);
+
+    console.log(`\nReturn: ${ret.rate} [${ret.percent}%] (${ret.fromValue} on ${ret.startDate} -> ${ret.toValue} on ${ret.endDate})`);
+
     if (SLACK_PATH) {
       await slack.sendMessage(SLACK_PATH, dataset.name, summary, drawdown.slice(0, 3), ret);
     }
