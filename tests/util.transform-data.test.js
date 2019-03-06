@@ -71,7 +71,7 @@ describe('transform data', () => {
       expect(result[0]).toHaveProperty('drawdown');
       expect(result.map(r => r.drawdown)).toMatchObject(['1.8', '1.5', '1.3', '0.8']);
       
-    })
+    });
   });
   
   describe('calculate return value', () => {
@@ -108,7 +108,7 @@ describe('transform data', () => {
       expect(result).toHaveProperty('startDate', 'endDate', 'fromValue', 'toValue', 'rate', 'percent');
       expect(result.rate).toEqual(2.740000000000009);
       expect(result.percent).toEqual('+1.6');
-    })
+    });
   });
   
 });

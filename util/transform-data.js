@@ -7,7 +7,7 @@ function getSummary({ data }){
       max: sum[2],
       min: sum[3],
       close: sum[4]
-    }
+    };
   });
   return summary;
 }
@@ -46,12 +46,10 @@ function calReturn(data) {
 
 function addLeadingSign(number) {
   switch(Math.sign(number)) {
-    case 1: return `+${number.toFixed(1)}`;
-      break;
-    case -1: return `-${number.toFixed(1)}`;
-      break;
-    case 0:
-      return number.toFixed(1);
+  case 1: return `+${number.toFixed(1)}`;
+  case -1: return `-${number.toFixed(1)}`;
+  case 0:
+    return number.toFixed(1);
   }
 }
 

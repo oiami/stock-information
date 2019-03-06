@@ -30,7 +30,7 @@ async function get(API_KEY, stock, args) {
     }
   });
   return result;
-};
+}
 
 module.exports = {
   get_end_date,

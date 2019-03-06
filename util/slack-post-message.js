@@ -1,24 +1,24 @@
-const axios = require("axios");
+const axios = require('axios');
 
 function summaryContent(name, data) {
   const title = `*Stock report for ${name} from ${data[0].date} - ${data[data.length - 1].date}*`;
   const titleSection = {
-    type: "section",
+    type: 'section',
     text: {
-      type: "mrkdwn",
+      type: 'mrkdwn',
       text: title
     }
   };
   
-  let text = "";
+  let text = '';
   data.forEach(item => {
     text += `${item.date}: Closed at ${item.close} (${item.min} ~ ${item.max})\n`;
   });
   
   const contentSection = {
-    type: "section",
+    type: 'section',
     text: {
-      type: "mrkdwn",
+      type: 'mrkdwn',
       text: text
     }
   };
@@ -28,31 +28,31 @@ function summaryContent(name, data) {
 
 function drawdownContent(data) {
   const titleSection = {
-    type: "section",
+    type: 'section',
     text: {
-      type: "mrkdwn",
-      text: "First 3 Drawdowns:"
+      type: 'mrkdwn',
+      text: 'First 3 Drawdowns:'
     }
   };
   
-  let text = "";
+  let text = '';
   data.forEach(item => {
     text += `-${item.drawdown}% (${item.max} on ${item.date} -> ${item.min} on ${item.date})\n`;
   });
   
   const contentSection = {
-    type: "section",
+    type: 'section',
     text: {
-      type: "mrkdwn",
+      type: 'mrkdwn',
       text: text
     }
   };
   
   const [max] = data;
   const maxDrawdone = {
-    type: "section",
+    type: 'section',
     text: {
-      type: "mrkdwn",
+      type: 'mrkdwn',
       text: `Maximum drawdown: -${max.drawdown}% (${max.max} on ${max.date} -> ${max.min} on ${max.date})`
     }
   };
@@ -61,9 +61,9 @@ function drawdownContent(data) {
 
 function returnContent(data) {
   return {
-    type: "section",
+    type: 'section',
     text: {
-      type: "mrkdwn",
+      type: 'mrkdwn',
       text: `Return: ${data.rate} [${data.percent}%] (${data.fromValue} on ${data.startDate} -> ${data.toValue} on ${data.endDate})`
     }
   };
@@ -79,21 +79,21 @@ async function sendMessage(slackPath, name, summary, drawdown, ret) {
   try {
     const blocks = [...sumSection, ...drawdownSection, returnSection];
     const message = {
-      text: "Stock Report",
-      "blocks": blocks
+      text: 'Stock Report',
+      'blocks': blocks
     };
     
     const result = await axios.post(`https://hooks.slack.com/services/${slackPath}`,
       message,
       {
         headers: {
-          "Content-type": "application/json"
+          'Content-type': 'application/json'
         }
       });
     
     return result;
   } catch (err) {
-    throw new Error("Cannot post message to Slack");
+    throw new Error('Cannot post message to Slack');
   }
   
 }
