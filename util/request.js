@@ -21,15 +21,20 @@ async function get(API_KEY, stock, args) {
   const startDate = new Date(`${fd} ${fm} ${fy} UTC`);
   const endDate = get_end_date(rest);
 
-  const result = await axios.get( `https://www.quandl.com/api/v3/datasets/WIKI/${stock}.json`, {
-    params: {
-      api_key: API_KEY,
-      start_date: startDate.toISOString(), // YYYY-MM-DD
-      end_date: endDate.toISOString(), // YYYY-MM-DD
-      order: 'asc'
-    }
-  });
-  return result;
+  try {
+    const result = await axios.get(`https://www.quandl.com/api/v3/datasets/WIKI/${stock}.json`, {
+      params: {
+        api_key: API_KEY,
+        start_date: startDate.toISOString(), // YYYY-MM-DD
+        end_date: endDate.toISOString(), // YYYY-MM-DD
+        order: 'asc'
+      }
+    });
+    return result.data;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+ 
 }
 
 module.exports = {
